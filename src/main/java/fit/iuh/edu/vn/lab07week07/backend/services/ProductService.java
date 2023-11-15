@@ -1,5 +1,6 @@
 package fit.iuh.edu.vn.lab07week07.backend.services;
 
+import fit.iuh.edu.vn.lab07week07.backend.enums.ProductStatus;
 import fit.iuh.edu.vn.lab07week07.backend.models.Product;
 import fit.iuh.edu.vn.lab07week07.backend.responsitory.ProductResponsitory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ public class ProductService {
     public Page<Product> findAllpage(int pageNo,int pageSize,String sortBy, String sortDirection){
         Sort sort = Sort.by(Sort.Direction.fromString(sortDirection), sortBy);
         Pageable pageable = PageRequest.of(pageNo, pageSize, sort);
-        return productResponsitory.findAll(pageable);
+        return productResponsitory.findAllbyStatus(ProductStatus.ACTIVE,ProductStatus.IN_ACTIVE,pageable);
     }
 
 //    public Page<Product> findPaginated(Pageable pageable) {

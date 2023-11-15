@@ -8,11 +8,11 @@ import java.util.List;
 
 @Entity
 @Table(name = "product")
-//@NamedQueries(value = {
-//        @NamedQuery(name = "Product.findAll", query = "select p from Product p where p.status = ?1"),
-//        @NamedQuery(name = "Product.findById", query = "select p from Product p where p.product_id = ?1")
-//        //,...1
-//})
+@NamedQueries(value = {
+        @NamedQuery(name = "Product.findAllbyStatus", query = "select p from Product p where p.status = :status1 or p.status = :status2"),
+        @NamedQuery(name = "Product.findById", query = "select p from Product p where p.product_id = ?1")
+        //,...1
+})
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
