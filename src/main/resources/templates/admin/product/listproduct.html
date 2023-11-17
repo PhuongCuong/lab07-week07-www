@@ -51,23 +51,29 @@
                 <th>name</th>
                 <th>status</th>
                 <th>unit</th>
+                <th>Price</th>
+                <th>Image</th>
                 <th>action</th>
             </tr>
         </thead>
         <tbody>
-            <tr th:each="product,iStat : ${productPage.content}">
-                <td th:text="${product.product_id}"></td>
-                <td th:text="${product.description}"></td>
-                <td th:text="${product.manufacturer}"></td>
-                <td th:text="${product.name}"></td>
-                <td th:text="${product.status}">status</td>
-                <td th:text="${product.unit}"></td>
+            <tr th:each="productViewModel,iStat : ${productPage.content}">
+                <td th:text="${productViewModel.product.getProduct_id()}"></td>
+                <td th:text="${productViewModel.product.getDescription()}"></td>
+                <td th:text="${productViewModel.product.getManufacturer()}"></td>
+                <td th:text="${productViewModel.product.getName()}"></td>
+                <td th:text="${productViewModel.product.getStatus()}"></td>
+                <td th:text="${productViewModel.product.getUnit()}"></td>
+                <td th:text="${productViewModel.price.getPrice()}"></td>
+                <td>
+                    <img class="card-img-top" th:src="${productViewModel.productImage.getPath()}">
+                </td>
                 <td>
                     <a type="button" class="btn btn-warning"
-                       th:href="@{/product/delete/{productId}(productId=${product.product_id})}">
+                       th:href="@{/product/delete/{productId}(productId=${productViewModel.product.getProduct_id()})}">
                         Delete
                     </a>
-                    <a type="button" class="btn btn-primary" th:href="@{/product/update/{productId}(productId=${product.product_id})}">Update</a>
+                    <a type="button" class="btn btn-primary" th:href="@{/product/update/{productId}(productId=${productViewModel.product.getProduct_id()})}">Update</a>
                 </td>
             </tr>
         </tbody>

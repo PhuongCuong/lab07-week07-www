@@ -9,7 +9,10 @@ import java.util.List;
 @Entity
 @Table(name = "product")
 @NamedQueries(value = {
-        @NamedQuery(name = "Product.findAllbyStatus", query = "select p from Product p where p.status = :status1 or p.status = :status2"),
+        @NamedQuery(name = "Product.findAllbyStatus", query = "select p from Product p " +
+                "inner join ProductPrice pr on p.id = pr.product.id " +
+                "inner join ProductImage pi on p.id = pi.product.id" +
+                " where p.status = :status1 or p.status = :status2"),
         @NamedQuery(name = "Product.findById", query = "select p from Product p where p.product_id = ?1")
         //,...1
 })
@@ -32,12 +35,12 @@ public class Product {
     @Column(name = "status")
     private ProductStatus status;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<ProductImage> productImageList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<OrderDetail> orderDetails = new ArrayList<>();
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "product", cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
     private List<ProductPrice> productPrices = new ArrayList<>();
 
     public Product() {

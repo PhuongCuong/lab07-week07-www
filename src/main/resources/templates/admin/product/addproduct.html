@@ -43,32 +43,39 @@
     <div class="my-3 row d-flex justify-content-center">
         <div class="col-7">
             <form action="#" th:action="@{/product/add}" th:object="${product}" method="post" >
-            <div class="mb-3">
-                <label class="form-label">name</label>
-                <input type="text" class="form-control" th:field="*{name}">
-            </div>
-            <div class="mb-3">
-                <label  class="form-label">description</label>
-                <input type="text" class="form-control" th:field="*{description}" >
-            </div>
-            <div class="mb-3">
-                <label  class="form-label">manufacturer</label>
-                <input type="text" class="form-control" th:field="*{manufacturer}" >
-            </div>
-            <div class="mb-3">
-                <label  class="form-label">status</label>
-                <select class="form-control" th:field="*{status}">
-                    <option th:each="productStatus : ${T(fit.iuh.edu.vn.lab07week07.backend.enums.ProductStatus).values()}"
-                        th:text="${productStatus}"
-                            th:value="${productStatus}"
-                    ></option>
-                </select>
-<!--                <input type="text" class="form-control" th:field="${product.description}" >-->
-            </div>
-            <div class="mb-3">
-                <label  class="form-label">unit</label>
-                <input type="text" class="form-control" th:field="*{unit}" >
-            </div>
+                <div class="mb-3">
+                    <label class="form-label">name</label>
+                    <input type="text" class="form-control" th:field="*{product.name}">
+                </div>
+                <div class="mb-3">
+                    <label  class="form-label">description</label>
+                    <input type="text" class="form-control" th:field="*{product.description}" >
+                </div>
+                <div class="mb-3">
+                    <label  class="form-label">manufacturer</label>
+                    <input type="text" class="form-control" th:field="*{product.manufacturer}" >
+                </div>
+                <div class="mb-3">
+                    <label  class="form-label">status</label>
+                    <select class="form-control" th:field="*{product.status}">
+                        <option th:each="productStatus : ${T(fit.iuh.edu.vn.lab07week07.backend.enums.ProductStatus).values()}"
+                                th:text="${productStatus}"
+                                th:value="${productStatus}"
+                        ></option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label  class="form-label">unit</label>
+                    <input type="text" class="form-control" th:field="*{product.unit}" >
+                </div>
+                <div class="mb-3">
+                    <label  class="form-label">price</label>
+                    <input type="text" class="form-control" th:field="*{price.price}" >
+                </div>
+                <div class="mb-3">
+                    <label for="formFileMultiple" class="form-label">Upload Img</label>
+                    <input class="form-control" type="file" id="formFileMultiple" multiple th:field="*{productImage.path}" />
+                </div>
             <div class="mb-3 d-flex justify-content-end">
                 <input class="btn btn-danger" type="submit" value="Add product">
             </div>

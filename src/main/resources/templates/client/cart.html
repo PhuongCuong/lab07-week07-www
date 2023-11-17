@@ -129,17 +129,23 @@
         <hr>
         <h6 class="mb-0">Shopping cart</h6>
         <div class="d-flex justify-content-between"><span th:text="${session.itemsOnCart!=null?'You have ' + session.itemsOnCart + ' items in your cart':''}"></span>
-          <div class="d-flex flex-row align-items-center"><span class="text-black-50">amount:</span>
+          <div class="d-flex flex-row align-items-center justify-content-between">
+            <span class="text-black-50 mx-5">amount:</span>
+            <span class="text-black-50 mx-5">Price:</span>
           </div>
         </div>
         <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded"
           th:each="item : ${session.items}"
         >
-          <div class="d-flex flex-row"><img class="rounded" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" width="40">
-            <div class="ml-2"><span class="font-weight-bold d-block" th:text="${item.getValue().getProduct().getName()}"></span><span class="spec">256GB, Navy Blue</span></div>
+          <div class="d-flex flex-row">
+<!--            <img class="card-img-top" th:src="${item.getValue().getProductImage().getPath()}" alt="..." />-->
+            <img class="card-img-top" th:src="${item.getValue().getProductImage().getPath()}" width="20" height="150">
+            <div class="ml-2"><span class="font-weight-bold d-block" th:text="${item.getValue().getProduct().getName()}"></span>
+            </div>
           </div>
-          <div class="d-flex flex-row align-items-center"><span class="d-block" th:text="${item.getValue().getAmount()}"></span>
-
+          <div class="d-flex flex-row align-items-center justify-content-between">
+            <span class="d-block mx-5" th:text="${item.getValue().getAmount()}"></span>
+            <span class="d-block" th:text="${#numbers.formatCurrency(item.getValue().getPrice().getPrice())}"></span>
           </div>
         </div>
 
@@ -162,9 +168,20 @@
           <div class="col-md-6"><label class="credit-card-label">CVV</label><input type="text" class="form-control credit-inputs" placeholder="342"></div>
         </div>
         <hr class="line">
-        <div class="d-flex justify-content-between information"><span>Subtotal</span><span>$3000.00</span></div>
+        <div class="d-flex justify-content-between information">
+          <span>Subtotal</span><span th:text="${#numbers.formatCurrency(session.total)}"></span>
+        </div>
         <div class="d-flex justify-content-between information"><span>Shipping</span><span>$20.00</span></div>
-        <div class="d-flex justify-content-between information"><span>Total(Incl. taxes)</span><span>$3020.00</span></div><button class="btn btn-primary btn-block d-flex justify-content-between mt-3" type="button"><span>$3020.00</span><span>Checkout<i class="fa fa-long-arrow-right ml-1"></i></span></button></div>
+        <div class="d-flex justify-content-between information"><span>Total(Incl. taxes)</span>
+            <span th:text="${#numbers.formatCurrency(session.total)}">$3020.00</span>
+        </div>
+          <a class="btn btn-primary btn-block d-flex justify-content-between mt-3" type="button"
+            th:href="@{/checkout/cart}"
+          >
+              <span th:text="${#numbers.formatCurrency(session.total)}"></span>
+              <span>Checkout<i class="fa fa-long-arrow-right ml-1"></i></span>
+          </a>
+      </div>
     </div>
   </div>
 </div>
