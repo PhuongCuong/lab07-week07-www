@@ -22,7 +22,6 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 @Controller
-
 public class ProductCotroller {
     @Autowired
     private ProductResponsitory productResponsitory;
@@ -95,7 +94,6 @@ public class ProductCotroller {
         Optional<ProductViewModel> optional = productResponsitory.findDesProductById(productId);
 
         if(optional.isPresent()){
-            System.out.println("check"+optional);
             model.addAttribute("updateproduct",optional.get());
         }
         return "admin/product/updateproduct";

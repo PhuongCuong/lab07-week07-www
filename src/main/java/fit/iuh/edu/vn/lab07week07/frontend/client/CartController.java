@@ -19,10 +19,18 @@ public class CartController {
 
     @GetMapping("/checkout/cart")
     public String checkoutCart(HttpSession session){
-        session.removeAttribute("itemsOnCart");
-        session.removeAttribute("items");
-        session.removeAttribute("total");
+        String url = "";
+        if(session.getAttribute("loginCus") == null && session.getAttribute("loginEmp") == null){
+            url = "redirect:/login";
+        }else {
 
-        return "redirect:/home";
+            Map<Long,CartItem> o = (Map<Long, CartItem>) session.getAttribute("items");
+            if(o ==null){
+                url = "redirect:/cart";
+            }else{
+                url = "redirect:/order/pay";
+            }
+        }
+        return url;
     }
 }

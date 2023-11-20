@@ -40,6 +40,67 @@
     <div class="d-flex mt-3 justify-content-center align-items-center">
         <h4>Danh Sách Employee</h4>
     </div>
+    <div class="d-flex mt-3 justify-content-end align-items-end mb-3">
+        <a type="button" class="btn btn-primary" th:href="@{/employee/add-form-employee}">Thêm</a>
+    </div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>fullname</th>
+            <th>dob</th>
+            <th>email</th>
+            <th>phone</th>
+            <th>address</th>
+            <th>status</th>
+            <th>action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="employee,iStat : ${employeePage.content}">
+            <td th:text="${employee.getId()}"></td>
+            <td th:text="${employee.getFullname()}"></td>
+            <td th:text="${employee.getDob()}"></td>
+            <td th:text="${employee.getEmail()}"></td>
+            <td th:text="${employee.getPhone()}"></td>
+            <td th:text="${employee.getAddress()}"></td>
+            <td th:text="${employee.getStatus()}"></td>
+
+            <td>
+                <a type="button" class="btn btn-warning"
+                th:href="@{/employee/delete/{employeeId}(employeeId=${employee.getId()})}">Delete</a>
+                <a type="button" class="btn btn-primary" th:href="@{/employee/update/{employeeId}(employeeId=${employee.getId()})}">Update</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            <li
+                    th:class="${employeePage.hasPrevious()} ? 'page-item' : 'page-item disabled' "
+            >
+                <a class="page-link"
+                   th:href="@{/employee(size=${employeePage.size},page=${employeePage.number})}"
+                >Previous</a>
+            </li>
+            <li
+                    th:if="${employeePage.totalPages > 0}"
+                    th:each="pageNumber : ${pageNumbers}"
+                    th:class="${pageNumber == employeePage.number + 1} ? 'page-item active' : 'page-item'">
+                <a class="page-link"
+                   th:href="@{/employee(size=${employeePage.size}, page=${pageNumber})}"
+                   th:text="${pageNumber}"
+                ></a>
+            </li>
+            <li th:class="${employeePage.hasNext()} ? 'page-item' : 'page-item disabled'">
+                <a class="page-link"
+                   th:if="${employeePage.hasNext()}"
+                   th:href="@{/employee(size=${employeePage.size},page=${employeePage.number + 2})}"
+                >Next</a>
+            </li>
+
+        </ul>
+    </nav>
 </div>
 <script src="webjars/bootstrap/5.3.2/js/bootstrap.min.js"></script>
 

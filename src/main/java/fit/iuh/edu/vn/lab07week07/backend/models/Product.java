@@ -35,10 +35,10 @@ public class Product {
     @Column(name = "status")
     private ProductStatus status;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "product", cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
     private List<ProductImage> productImageList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "product", cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
     private List<OrderDetail> orderDetails = new ArrayList<>();
     @OneToMany(mappedBy = "product", cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
     private List<ProductPrice> productPrices = new ArrayList<>();

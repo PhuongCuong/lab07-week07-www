@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ProductResponsitory extends JpaRepository<Product,Long> {
-    public Page<Product> findAllbyStatus(ProductStatus status1, ProductStatus status2, Pageable pageable);
+//    public Page<Product> findAllbyStatus(ProductStatus status1, ProductStatus status2, Pageable pageable);
 
 
 //    @Query("SELECT new fit.iuh.edu.vn.lab07week07.frontend.dto.ProductViewModel(p, pi, pr) " +

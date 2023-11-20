@@ -18,6 +18,13 @@
     </properties>
     <dependencies>
 
+        <!-- https://mvnrepository.com/artifact/org.webjars/bootstrap-datepicker -->
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap-datepicker</artifactId>
+            <version>1.7.1</version>
+        </dependency>
+
 
         <dependency>
             <groupId>mysql</groupId>
