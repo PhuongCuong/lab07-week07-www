@@ -1,19 +1,14 @@
 package fit.iuh.edu.vn.lab07week07.frontend.order;
 
 import fit.iuh.edu.vn.lab07week07.backend.models.*;
-import fit.iuh.edu.vn.lab07week07.backend.responsitory.CustomerResponsitory;
-import fit.iuh.edu.vn.lab07week07.backend.responsitory.ProductImageResponsitory;
-import fit.iuh.edu.vn.lab07week07.backend.responsitory.ProductResponsitory;
+import fit.iuh.edu.vn.lab07week07.backend.responsitory.*;
 import fit.iuh.edu.vn.lab07week07.backend.services.OrderService;
 import fit.iuh.edu.vn.lab07week07.frontend.dto.CartItem;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -31,10 +26,24 @@ public class OrderCotroller {
     private CustomerResponsitory customerResponsitory;
     @Autowired
     private ProductResponsitory productResponsitory;
+    @Autowired
+    private OrderResponsitory orderResponsitory;
+    @Autowired
+    private OrderDetailResponsitory orderDetailResponsitory;
 
     @GetMapping("")
     public String getorder(Model model){
+        model.addAttribute("getAllOrder",orderResponsitory.findAll());
+        System.out.println(orderResponsitory.findAllOrderInfo());
         return "admin/order/listorder";
+    }
+
+    @GetMapping("/get-order-detail/{orderId}")
+    public String getorderdetail(@PathVariable("orderId") Long orderId,Model model){
+        List<OrderDetail> orderDetails = orderDetailResponsitory.findOrderDetailByOrderId(orderId);
+        model.addAttribute("listOD",orderDetails);
+        return "admin/order/listorderDetail";
+
     }
 
     @GetMapping("/pay")

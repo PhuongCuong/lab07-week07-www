@@ -48,8 +48,8 @@ public class Lab07Week07Application {
                         device.modelName(), faker.lorem().paragraph(30),
                         "piece", device.manufacturer(), ProductStatus.ACTIVE
                 );
-                double min = 100000;
-                double max = 900000;
+                double min = 1500;
+                double max = 2000;
                 double randoms = min + (max-min) + random.nextDouble();
 
                 ProductPrice price = new ProductPrice(

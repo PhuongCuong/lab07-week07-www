@@ -41,48 +41,28 @@
         </div>
     </nav>
     <div class="d-flex mt-3 justify-content-center align-items-center">
-        <h4>Danh Sách order</h4>
+        <h4>Danh Sách orderDetail</h4>
     </div>
     <div class="d-flex justify-content-center align-items-center">
-        <table class="table table-striped mx-3">
-            <thead>
-            <tr>
-                <th>id</th>
-                <th>order date</th>
-                <th>cust name</th>
-                <th>employee name</th>
-                <th>action</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="order,iStat : ${getAllOrder}">
-                <td th:text="${order.getOrder_id()}"></td>
-                <td th:text="${order.getOrderDate()}"></td>
-                <td th:text="${order.getCustomer().getName()}"></td>
-                <td th:text="${order.getEmployee().getFullname()}"></td>
-                <td>
-                    <a type="button" class="btn btn-warning"
-                       th:href="@{/order/get-order-detail/{orderId}(orderId=${order.getOrder_id()})}">
-                        <i class="bi bi-eye"></i>
-                    </a>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Product Id</th>
+                        <th>name</th>
+                        <th>price</th>
+                        <th>quantity</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="order,iStat : ${listOD}">
+                        <td th:text="${order.getProduct().getProduct_id()}"></td>
+                        <td th:text="${order.getProduct().getName()}"></td>
+                        <td th:text="${order.getPrice()}"></td>
+                        <td th:text="${order.getQuantity()}"></td>
 
-            </tr>
-            </tbody>
-        </table>
-<!--        <table class="table table-striped">-->
-<!--            <thead>-->
-<!--            <tr>-->
-<!--                <th>Product Id</th>-->
-<!--                <th>name</th>-->
-<!--                <th>price</th>-->
-<!--                <th>quantity</th>-->
-<!--                <th>Img</th>-->
-<!--            </tr>-->
-<!--            </thead>-->
-<!--            <tbody>-->
 
-<!--            </tbody>-->
-<!--        </table>-->
+                    </tbody>
+                </table>
     </div>
 </div>
 <script src="webjars/bootstrap/5.3.2/js/bootstrap.min.js"></script>

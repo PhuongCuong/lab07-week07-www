@@ -76,6 +76,18 @@ public class Order {
         this.orderDetails = orderDetails;
     }
 
+//    @Override
+//    public String toString() {
+//        return "Order{" +
+//                "order_id=" + order_id +
+//                ", orderDate=" + orderDate +
+//                ", employee=" + employee +
+//                ", customer=" + customer +
+//                ", orderDetails=" + orderDetails +
+//                '}';
+//    }
+
+
     @Override
     public String toString() {
         return "Order{" +
@@ -83,7 +95,6 @@ public class Order {
                 ", orderDate=" + orderDate +
                 ", employee=" + employee +
                 ", customer=" + customer +
-                ", orderDetails=" + orderDetails +
                 '}';
     }
 }
