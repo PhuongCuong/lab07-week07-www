@@ -1,5 +1,10 @@
 # lab07-week07-www
 
+<h3>Sơ đồ quan hệ</h3>
+
+![image](https://github.com/PhuongCuong/lab07-week07-www/assets/124875164/56ffa241-e458-463d-ad44-10a480bdd0b2)
+
+
 <h3>Login</h3>
 
 ![image](https://github.com/PhuongCuong/lab07-week07-www/assets/124875164/7c9442f8-d8a7-47c2-9c33-10e6f30ee10a)
@@ -83,6 +88,12 @@
 ![image](https://github.com/PhuongCuong/lab07-week07-www/assets/124875164/04f28a8e-e958-4f17-842c-ccb056d508bd)
 
 ![image](https://github.com/PhuongCuong/lab07-week07-www/assets/124875164/7ab24430-4c0e-422a-8bc3-73912df79060)
+
+<h4>Update Price</h4>
+
+![image](https://github.com/PhuongCuong/lab07-week07-www/assets/124875164/b24d0803-9a14-417b-b34c-4f4d8487cd9f)
+
+![image](https://github.com/PhuongCuong/lab07-week07-www/assets/124875164/49af924c-8108-4f28-9f5a-37a4b3ef4d10)
 
 <h3>Manager order</h3>
 
